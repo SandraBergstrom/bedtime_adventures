@@ -16,3 +16,4 @@ story = SHEET.worksheet("story")
 
 data = story.get_all_values()
 print(data)
+
