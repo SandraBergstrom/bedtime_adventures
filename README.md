@@ -7,9 +7,9 @@ Bedtime Adventures is perfect for snuggling up with your little ones at bedtime 
 
 Testing:
 Name validation:
-- 2 names inserted - OK
-- Only letters - OK
-- Correct name input - OK
+- 3 or more letters inserted - OK for both names
+- Only letters - OK for both names
+- Correct name input - OK for both names
 
 Bugs:
 - Name validation for only letters will cause an error everytime because of the csv.

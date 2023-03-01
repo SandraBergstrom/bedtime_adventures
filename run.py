@@ -18,7 +18,6 @@ def get_user_name1():
     Get name input from user.
     """
     print("Who will be the heroes of tonight's adventure? We need two brave and adventurous names for our characters. \n")
-    print("If you are reading to more than one child, we suggest using their names, but if you're reading to a single child, you can add your own name as the second hero.\n")
     
     while True:
         print("Please type in a name and press enter! \n")
@@ -27,10 +26,11 @@ def get_user_name1():
         #validate_names(name1)
 
         if validate_names(name1):
-            print(f"Hello {name1}!")
+            print(f"Hello {name1}! \n")
             break
         else:
             continue
+    return name1
 
 def get_user_name2():
     """
@@ -41,9 +41,9 @@ def get_user_name2():
         #validate_names(name2_input)
 
         if validate_names(name2):
-            print(f"Hello to you too, {name2} Let's start our adventure!")
+            print(f"Hello to you too, {name2}. Let's start our adventure! \n")
             break
-    
+    return name2
 
 def validate_names(name):
     """
@@ -66,8 +66,17 @@ def validate_names(name):
     
     return True
 
-
-
+def get_start_story(name1, name2):
+    """
+    Get the beginning of the story from google sheets and replace [Name1] and [Name2]
+    with names from input. 
+    """
+    story = SHEET.worksheet("story").get_all_values()
+    story_text = "\n".join([row[0] for row in story])
+    story_text = story_text.replace("[Name1]", name1)
+    story_text = story_text.replace("[Name2]", name2)
+    
+    print(story_text)
 
 
 # start story with names from input
@@ -78,14 +87,15 @@ def validate_names(name):
  
 # print end of story. 
 
-#def main():
-    
 
+def main():
+    name1 = get_user_name1()
+    name2 = get_user_name2()
+    get_start_story(name1, name2)
+
+    
 print("Welcome to Bedtime Adventures! \n")
-print("Get ready to embark on exciting and imaginative journeys with your child. Our interactive stories are designed to encourage your child's creativity and critical thinking skills, while also providing an enjoyable and engaging experience.")
+print("Get ready to embark on exciting and imaginative journeys with your child. Our interactive stories are designed to encourage your child's creativity and critical thinking skills, while also providing an enjoyable and engaging experience.\n")
 print("Let's dive in and explore new worlds together! \n")
 
-get_user_name1()
-get_user_name2()
-
-#main()get_user_names
+main()
