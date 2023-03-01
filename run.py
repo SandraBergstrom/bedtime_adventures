@@ -37,8 +37,12 @@ def validate_names(values):
             raise ValueError(
                 f"We need 2 names from you and you gave us {len(values)}! Type them in, separated by a comma"
             )
+        elif not all(name.isalpha() for name in values):
+            raise ValueError(
+                "Looks like we can only accept letters from A to Z. Please make sure to only enter characters from the alphabet"
+            )
     except ValueError as e:
-        print(f"Oopsie daisy! {e}. Please try again like this: Bubbles, Giggles.\n")
+        print(f"Oopsie daisy! {e}. Please try again!\n")
 
 
 
