@@ -9,6 +9,8 @@ Testing:
 Name validation:
 - 2 names inserted - OK
 - Only letters - OK
+- Correct name input - OK
 
 Bugs:
 - Name validation for only letters will cause an error everytime because of the csv.
+    - Created 2 input fields so one for each name instaed. Changed so it validates that there is 3 or more letters in each name. 

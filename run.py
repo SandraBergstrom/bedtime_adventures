@@ -13,40 +13,58 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("bedtime_adventures")
 
 
-def get_user_names():
+def get_user_name1():
     """
     Get name input from user.
     """
     print("Who will be the heroes of tonight's adventure? We need two brave and adventurous names for our characters. \n")
     print("If you are reading to more than one child, we suggest using their names, but if you're reading to a single child, you can add your own name as the second hero.\n")
-    print("Please type in a name and press enter! \n")
-
-
-    name1_input = input("Enter the name of the first hero here: ")
-    validate_names(name1_input)
-    name2_input = input("Enter the name of the second hero here: ")
-    validate_names(name2_input)
     
-    #names = names_input.split(",")
-    validate_names(name2_input)
-    
+    while True:
+        print("Please type in a name and press enter! \n")
 
-def validate_names(names):
+        name1 = input("Enter the name of the first hero here: ")
+        #validate_names(name1)
+
+        if validate_names(name1):
+            print(f"Hello {name1}!")
+            break
+        else:
+            continue
+
+def get_user_name2():
     """
-    Check for 2 names, check for only letters.
+    Get name input from user.
+    """
+    while True:
+        name2 = input("Enter the name of the second hero here: ")
+        #validate_names(name2_input)
+
+        if validate_names(name2):
+            print(f"Hello to you too, {name2} Let's start our adventure!")
+            break
+    
+
+def validate_names(name):
+    """
+    Check for a name with 3 or more letters.
+    Check for only letters.
     """
     try:
-        if len(names) < 3:
+        if len(name) < 3:
             raise ValueError(
-                f"We need a name with at leaast 3 letters from you and you gave us {len(names)}! Type them in, separated by a comma"
+                f"We need a name with at least 3 letters from you and you gave us {len(name)}!"
             )
-        for name in names:
-            if not name.isalpha():
+        for letter in name:
+            if not letter.isalpha():
                 raise ValueError(
                     "Looks like we can only accept letters from A to Z. Please make sure to only enter characters from the alphabet"
-            )
+                )
     except ValueError as e:
-        print(f"Oopsie daisy! {e}. Please try again!\n")
+        print(f"Oopsie daisy! {e}. Try again!\n")
+        return False
+    
+    return True
 
 
 
@@ -67,7 +85,7 @@ print("Welcome to Bedtime Adventures! \n")
 print("Get ready to embark on exciting and imaginative journeys with your child. Our interactive stories are designed to encourage your child's creativity and critical thinking skills, while also providing an enjoyable and engaging experience.")
 print("Let's dive in and explore new worlds together! \n")
 
-get_user_names()
+get_user_name1()
+get_user_name2()
 
-
-#main()
+#main()get_user_names
