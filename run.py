@@ -18,14 +18,29 @@ def get_user_names():
     Get name input from user.
     """
     print("Who will be the heroes of tonight's adventure? We need two brave and adventurous names for our characters. \n")
-    print("If you are reading to more than one child, we suggest using their names, but if you're reading to a single child, you can add your own name as the second hero.")
-    print("Please type the two names, separated by a comma, and then press enter to get started with the story!")
-    print("Example: Bubbles, Giggles")
+    print("If you are reading to more than one child, we suggest using their names, but if you're reading to a single child, you can add your own name as the second hero.\n")
+    print("Please type the two names, separated by a comma, and then press enter to get started with the story! \n")
+    print("Example: Bubbles, Giggles \n")
 
-    names = input("Enter names here: ")
-    print(f"The names proivded is {names}")
-
+    names_input = input("Enter names here: ")
     
+    names = names_input.split(",")
+    validate_names(names)
+    
+
+def validate_names(values):
+    """
+    Check for 2 names, check for only letters.
+    """
+    try:
+        if len(values) != 2:
+            raise ValueError(
+                f"We need 2 names from you and you gave us {len(values)}! Type them in, separated by a comma"
+            )
+    except ValueError as e:
+        print(f"Oopsie daisy! {e}. Please try again like this: Bubbles, Giggles.\n")
+
+
 
 
 
