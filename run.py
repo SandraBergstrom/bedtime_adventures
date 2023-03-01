@@ -75,8 +75,11 @@ def get_start_story(name1, name2):
     story_text = "\n".join([row[0] for row in story])
     story_text = story_text.replace("[Name1]", name1)
     story_text = story_text.replace("[Name2]", name2)
+    story_text = story_text.replace("'\\n'", "\n")
     
     print(story_text)
+    continue_to_adventure = input("Insert X or Y here: ")
+    print(continue_to_adventure)
 
 
 # start story with names from input
