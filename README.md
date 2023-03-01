@@ -9,3 +9,6 @@ Testing:
 Name validation:
 - 2 names inserted - OK
 - Only letters - OK
+
+Bugs:
+- Name validation for only letters will cause an error everytime because of the csv.
