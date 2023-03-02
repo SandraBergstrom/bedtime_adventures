@@ -70,8 +70,7 @@ def get_start_story(name1, name2):
     """
     Get the beginning of the story from google sheets and replace [Name1] and [Name2]
     with names from input. Add adventure choice for user to pick how the story continues.
-    """
-       
+    """  
     story = SHEET.worksheet("story").get_all_values()
     story_text = "\n".join([row[0] for row in story])
     story_text = story_text.replace("[Name1]", name1)
@@ -80,12 +79,11 @@ def get_start_story(name1, name2):
        
     print(story_text)
     while True: 
-        print("bug")
         choice1 = input("Insert X or Y here: ")
         choice1 = choice1.capitalize()
         
         if validate_story_choice(choice1):
-            print("Let's go!")
+            print("Let's go! \n")
             break
 
     return choice1
@@ -98,32 +96,60 @@ def get_adventure_story(name1, name2, choice1):
     """
     
     if choice1 == "X":
-        story = SHEET.worksheet("x").get_all_values()
-        story_text = "\n".join([row[0] for row in story])
-        story_text = story_text.replace("[Name1]", name1)
-        story_text = story_text.replace("[Name2]", name2)
-        story_text = story_text.replace("'\\n'", "\n")
-        print(story_text)
-                
+        story = SHEET.worksheet("x").get_all_values()                
     elif choice1 == "Y":
         story = SHEET.worksheet("y").get_all_values()
-        story_text = "\n".join([row[0] for row in story])
-        story_text = story_text.replace("[Name1]", name1)
-        story_text = story_text.replace("[Name2]", name2)
-        story_text = story_text.replace("'\\n'", "\n")
-        print(story_text)
+     
+    story_text = "\n".join([row[0] for row in story])
+    story_text = story_text.replace("[Name1]", name1)
+    story_text = story_text.replace("[Name2]", name2)
+    story_text = story_text.replace("'\\n'", "\n")
+    print(story_text)
     
-    while True: 
-        print("bug2")        
+    while True:        
         choice2 = input("Insert X or Y here: ")
         choice2 = choice2.capitalize()
 
     
         if validate_story_choice(choice2):
-            print("Let's go!")
+            print("Let's go! \n")
             break
 
     return choice1 + choice2
+
+def get_end_story(name1, name2, choice2):
+    """
+    Get adventure story XX, XY, YX or Y depending on choice in adventure story.
+    Add ending. 
+    """
+    
+    if choice2 == "XX":
+        story = SHEET.worksheet("xx").get_all_values()                
+    elif choice2 == "XY":
+        story = SHEET.worksheet("xy").get_all_values()
+    elif choice2 == "YX":
+        story = SHEET.worksheet("yx").get_all_values()                
+    elif choice2 == "YY":
+        story = SHEET.worksheet("yy").get_all_values()
+     
+    story_text = "\n".join([row[0] for row in story])
+    story_text = story_text.replace("[Name1]", name1)
+    story_text = story_text.replace("[Name2]", name2)
+    story_text = story_text.replace("'\\n'", "\n")
+    print(story_text)
+
+def get_ending(name1, name2):
+    """
+    Get the end of the story from google sheets and replace [Name1] and [Name2]
+    with names from input. 
+    """  
+    story = SHEET.worksheet("end").get_all_values()
+    story_text = "\n".join([row[0] for row in story])
+    story_text = story_text.replace("[Name1]", name1)
+    story_text = story_text.replace("[Name2]", name2)
+    story_text = story_text.replace("'\\n'", "\n")
+       
+    print(story_text)
     
 def validate_story_choice(choice):
     """
@@ -145,9 +171,9 @@ def main():
     name1 = get_user_name1()
     name2 = get_user_name2()
     choice1 = get_start_story(name1, name2)
-    #print(choice1)
     choice2 = get_adventure_story(name1, name2, choice1)
-    #print(choice2)
+    get_end_story(name1, name2, choice2)
+    get_ending(name1, name2)
 
 
 print("Welcome to Bedtime Adventures! \n")
