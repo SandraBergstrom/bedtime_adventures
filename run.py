@@ -23,7 +23,7 @@ def get_user_name1():
         print("Please type in a name and press enter! \n")
 
         name1 = input("Enter the name of the first hero here: ")
-        #validate_names(name1)
+        name1 = name1.capitalize()
 
         if validate_names(name1):
             print(f"Hello {name1}! \n")
@@ -38,7 +38,7 @@ def get_user_name2():
     """
     while True:
         name2 = input("Enter the name of the second hero here: ")
-        #validate_names(name2_input)
+        name2 = name2.capitalize()
 
         if validate_names(name2):
             print(f"Hello to you too, {name2}. Let's start our adventure! \n")
@@ -78,11 +78,28 @@ def get_start_story(name1, name2):
     story_text = story_text.replace("'\\n'", "\n")
     
     print(story_text)
-    continue_to_adventure = input("Insert X or Y here: ")
-    print(continue_to_adventure)
+    adventure_choice = input("Insert X or Y here: ")
+    choice = adventure_choice.capitalize()
+    validate_story_choice(choice)
+    return choice
+    
 
 
-# start story with names from input
+def validate_story_choice(choice):
+    """
+    Validate that user enters either X or Y 
+    """
+    try:
+        if choice != "X" and choice != "Y":
+            raise ValueError(
+                f"You need to pick either X or Y, you wrote {choice}!"
+            )
+    except ValueError as e:
+        print(f"Oopsie daisy! {e}. Try again!\n")
+        return False
+    
+    return True
+
 
 # make a choice to continue story
 
@@ -94,7 +111,8 @@ def get_start_story(name1, name2):
 def main():
     name1 = get_user_name1()
     name2 = get_user_name2()
-    get_start_story(name1, name2)
+    adventure = get_start_story(name1, name2)
+    print(adventure)
 
     
 print("Welcome to Bedtime Adventures! \n")
