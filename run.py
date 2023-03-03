@@ -39,7 +39,6 @@ def get_user_name1():
 
         name1 = input("Enter the name of the first hero here:\n")
         name1 = name1.capitalize()
-        print("then press enter.")
 
         if validate_names(name1):
             print(f"Hello {name1}! \n")
@@ -57,7 +56,6 @@ def get_user_name2():
     while True:
         name2 = input("Enter the name of the second hero here:\n")
         name2 = name2.capitalize()
-        print("then press enter.")
 
         if validate_names(name2):
             print(f"Hello to you too, {name2}. Let's start our adventure! \n")
@@ -114,7 +112,6 @@ def get_start_story(name1, name2):
     while True: 
         choice1 = input("Insert X or Y here:\n")
         choice1 = choice1.capitalize()
-        print("then press enter.")
         
         if validate_story_choice(choice1):
             print("Let's go! \n")
@@ -145,8 +142,6 @@ def get_adventure_story(name1, name2, choice1):
     while True:        
         choice2 = input("Insert X or Y here:\n")
         choice2 = choice2.capitalize()
-        print("then press enter.")
-
     
         if validate_story_choice(choice2):
             print("Let's go! \n")
@@ -160,7 +155,7 @@ def get_end_story(name1, name2, choice2):
     Add ending. 
     """
     sleep(2)
-    #os.system('clear')
+    os.system('clear')
 
     if choice2 == "XX":
         story = SHEET.worksheet("xx").get_all_values()                
