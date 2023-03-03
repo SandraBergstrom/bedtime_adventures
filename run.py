@@ -1,6 +1,8 @@
 import gspread
 from google.oauth2.service_account import Credentials
 import textwrap
+import os
+from time import sleep
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -13,10 +15,21 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("bedtime_adventures")
 
+def get_welcome_message():
+    """
+    Get the welcome message and print it.
+    """  
+    story = SHEET.worksheet("welcome").get_all_values()
+    story_text = "\n".join([row[0] for row in story])
+    story_text = story_text.replace("'\\n'", "\n")
+    story_text = wrap_text(story_text)
+    
+    print(story_text)
 
 def get_user_name1():
     """
-    Get name input from user.
+    Get name input from user and will loop if not passed through 
+    validator.
     """
     print("Who will be the heroes of tonight's adventure? We need two brave")
     print("and adventurous names for our characters. \n")
@@ -36,8 +49,10 @@ def get_user_name1():
 
 def get_user_name2():
     """
-    Get name input from user.
+    Get second name input from user and will loop if not passed 
+    through validator.
     """
+    sleep(2)
     while True:
         name2 = input("Enter the name of the second hero here:\n")
         name2 = name2.capitalize()
@@ -69,37 +84,31 @@ def validate_names(name):
     return True
 
 def wrap_text(text):
-    wrapper = textwrap.TextWrapper(width=70, replace_whitespace=False)
+    """
+    Wrap text so lines will not be longer than 80 characters. 
+    """
+    wrapper = textwrap.TextWrapper(width=80, replace_whitespace=False)
     story_text = wrapper.fill(text=text)
     
     return story_text
-
-def get_welcome_message():
-    """
-    Get the welcome message and print it.
-    """  
-    story = SHEET.worksheet("welcome").get_all_values()
-    story_text = "\n".join([row[0] for row in story])
-    story_text = story_text.replace("'\\n'", "\n")
-    story_text = wrap_text(story_text)
-    
-
-    print(story_text)
 
 def get_start_story(name1, name2):
     """
     Get the beginning of the story from google sheets and replace [Name1] and [Name2]
     with names from input. Add adventure choice for user to pick how the story continues.
     """  
+    sleep(2)
+    os.system('clear')
+    
     story = SHEET.worksheet("story").get_all_values()
     story_text = "\n".join([row[0] for row in story])
     story_text = story_text.replace("[Name1]", name1)
     story_text = story_text.replace("[Name2]", name2)
     story_text = story_text.replace("'\\n'", "\n")
     story_text = wrap_text(story_text)
-    
-       
+     
     print(story_text)
+
     while True: 
         choice1 = input("Insert X or Y here:\n")
         choice1 = choice1.capitalize()
@@ -110,13 +119,14 @@ def get_start_story(name1, name2):
 
     return choice1
 
-
 def get_adventure_story(name1, name2, choice1):
     """
     Get adventure story X or Y depending on choice in start story.
     Add end choice for user to pick how the story ends. 
     """
-    
+    sleep(2)
+    os.system('clear')
+
     if choice1 == "X":
         story = SHEET.worksheet("x").get_all_values()                
     elif choice1 == "Y":
@@ -145,7 +155,9 @@ def get_end_story(name1, name2, choice2):
     Get adventure story XX, XY, YX or Y depending on choice in adventure story.
     Add ending. 
     """
-    
+    sleep(2)
+    os.system('clear')
+
     if choice2 == "XX":
         story = SHEET.worksheet("xx").get_all_values()                
     elif choice2 == "XY":
@@ -191,8 +203,10 @@ def validate_story_choice(choice):
     
     return True
 
-
 def main():
+    """
+    Will run all everything 
+    """
     get_welcome_message()
     name1 = get_user_name1()
     name2 = get_user_name2()
@@ -200,7 +214,6 @@ def main():
     choice2 = get_adventure_story(name1, name2, choice1)
     get_end_story(name1, name2, choice2)
     get_ending(name1, name2)
-
 
 print("Welcome to Bedtime Adventures! \n")
 
