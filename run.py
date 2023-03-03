@@ -52,7 +52,7 @@ def get_user_name2():
     Get second name input from user and will loop if not passed 
     through validator.
     """
-    sleep(2)
+    sleep(1)
     while True:
         name2 = input("Enter the name of the second hero here:\n")
         name2 = name2.capitalize()
@@ -85,9 +85,9 @@ def validate_names(name):
 
 def wrap_text(text):
     """
-    Wrap text so lines will not be longer than 80 characters. 
+    Wrap text so lines will not be longer than 70 characters. 
     """
-    wrapper = textwrap.TextWrapper(width=80, replace_whitespace=False)
+    wrapper = textwrap.TextWrapper(width=70, replace_whitespace=False)
     story_text = wrapper.fill(text=text)
     
     return story_text
@@ -99,7 +99,7 @@ def get_start_story(name1, name2):
     """  
     sleep(2)
     os.system('clear')
-    
+
     story = SHEET.worksheet("story").get_all_values()
     story_text = "\n".join([row[0] for row in story])
     story_text = story_text.replace("[Name1]", name1)
