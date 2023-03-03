@@ -1,5 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
+import textwrap
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -17,7 +18,8 @@ def get_user_name1():
     """
     Get name input from user.
     """
-    print("Who will be the heroes of tonight's adventure? We need two brave and adventurous names for our characters. \n")
+    print("Who will be the heroes of tonight's adventure? We need two brave")
+    print("and adventurous names for our characters. \n")
     
     while True:
         print("Please type in a name and press enter! \n")
@@ -31,17 +33,6 @@ def get_user_name1():
         else:
             continue
     return name1
-
-def get_welcome_message():
-    """
-    Get the welcome message and print it.
-    """  
-    story = SHEET.worksheet("welcome").get_all_values()
-    story_text = "\n".join([row[0] for row in story])
-    story_text = story_text.replace("'\\n'", "\n")
-       
-    print(story_text)
-
 
 def get_user_name2():
     """
@@ -77,6 +68,22 @@ def validate_names(name):
     
     return True
 
+def wrap_text(text):
+    wrapper = textwrap.TextWrapper(width=70)
+    story_text= wrapper.fill(text=text)
+    return story_text
+
+def get_welcome_message():
+    """
+    Get the welcome message and print it.
+    """  
+    story = SHEET.worksheet("welcome").get_all_values()
+    story_text = "\n".join([row[0] for row in story])
+    story_text = story_text.replace("'\\n'", "\n")
+    story_text = wrap_text(story_text)
+
+    print(story_text)
+
 def get_start_story(name1, name2):
     """
     Get the beginning of the story from google sheets and replace [Name1] and [Name2]
@@ -87,6 +94,7 @@ def get_start_story(name1, name2):
     story_text = story_text.replace("[Name1]", name1)
     story_text = story_text.replace("[Name2]", name2)
     story_text = story_text.replace("'\\n'", "\n")
+    story_text = wrap_text(story_text)
        
     print(story_text)
     while True: 
@@ -115,6 +123,7 @@ def get_adventure_story(name1, name2, choice1):
     story_text = story_text.replace("[Name1]", name1)
     story_text = story_text.replace("[Name2]", name2)
     story_text = story_text.replace("'\\n'", "\n")
+    story_text = wrap_text(story_text)
     print(story_text)
     
     while True:        
@@ -147,6 +156,7 @@ def get_end_story(name1, name2, choice2):
     story_text = story_text.replace("[Name1]", name1)
     story_text = story_text.replace("[Name2]", name2)
     story_text = story_text.replace("'\\n'", "\n")
+    story_text = wrap_text(story_text)
     print(story_text)
 
 def get_ending(name1, name2):
@@ -159,6 +169,7 @@ def get_ending(name1, name2):
     story_text = story_text.replace("[Name1]", name1)
     story_text = story_text.replace("[Name2]", name2)
     story_text = story_text.replace("'\\n'", "\n")
+    story_text = wrap_text(story_text)
        
     print(story_text)
     
