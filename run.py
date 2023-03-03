@@ -32,6 +32,17 @@ def get_user_name1():
             continue
     return name1
 
+def get_welcome_message():
+    """
+    Get the welcome message and print it.
+    """  
+    story = SHEET.worksheet("welcome").get_all_values()
+    story_text = "\n".join([row[0] for row in story])
+    story_text = story_text.replace("'\\n'", "\n")
+       
+    print(story_text)
+
+
 def get_user_name2():
     """
     Get name input from user.
@@ -168,6 +179,7 @@ def validate_story_choice(choice):
 
 
 def main():
+    get_welcome_message()
     name1 = get_user_name1()
     name2 = get_user_name2()
     choice1 = get_start_story(name1, name2)
@@ -177,7 +189,5 @@ def main():
 
 
 print("Welcome to Bedtime Adventures! \n")
-print("Get ready to embark on exciting and imaginative journeys with your child. Our \n interactive stories are designed to encourage your child's creativity and critical thinking skills, while also providing an enjoyable and engaging experience.\n")
-print("Let's dive in and explore new worlds together! \n")
 
 main()
