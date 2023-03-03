@@ -156,7 +156,7 @@ def get_end_story(name1, name2, choice2):
     Add ending. 
     """
     sleep(2)
-    os.system('clear')
+    #os.system('clear')
 
     if choice2 == "XX":
         story = SHEET.worksheet("xx").get_all_values()                
