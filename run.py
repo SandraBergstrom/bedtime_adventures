@@ -69,8 +69,9 @@ def validate_names(name):
     return True
 
 def wrap_text(text):
-    wrapper = textwrap.TextWrapper(width=70)
-    story_text= wrapper.fill(text=text)
+    wrapper = textwrap.TextWrapper(width=70, replace_whitespace=False)
+    story_text = wrapper.fill(text=text)
+    
     return story_text
 
 def get_welcome_message():
@@ -81,6 +82,7 @@ def get_welcome_message():
     story_text = "\n".join([row[0] for row in story])
     story_text = story_text.replace("'\\n'", "\n")
     story_text = wrap_text(story_text)
+    
 
     print(story_text)
 
@@ -95,6 +97,7 @@ def get_start_story(name1, name2):
     story_text = story_text.replace("[Name2]", name2)
     story_text = story_text.replace("'\\n'", "\n")
     story_text = wrap_text(story_text)
+    
        
     print(story_text)
     while True: 
