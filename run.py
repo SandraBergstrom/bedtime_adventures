@@ -177,7 +177,7 @@ def main():
 
 
 print("Welcome to Bedtime Adventures! \n")
-print("Get ready to embark on exciting and imaginative journeys with your child. Our interactive stories are designed to encourage your child's creativity and critical thinking skills, while also providing an enjoyable and engaging experience.\n")
+print("Get ready to embark on exciting and imaginative journeys with your child. Our \n interactive stories are designed to encourage your child's creativity and critical thinking skills, while also providing an enjoyable and engaging experience.\n")
 print("Let's dive in and explore new worlds together! \n")
 
 main()
