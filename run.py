@@ -167,6 +167,7 @@ def get_end_story(name1, name2, choice2):
     elif choice2 == "YY":
         story = SHEET.worksheet("yy").get_all_values()
      
+    os.system('clear')
     story_text = "\n".join([row[0] for row in story])
     story_text = story_text.replace("[Name1]", name1)
     story_text = story_text.replace("[Name2]", name2)
