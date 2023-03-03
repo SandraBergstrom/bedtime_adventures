@@ -22,7 +22,7 @@ def get_user_name1():
     while True:
         print("Please type in a name and press enter! \n")
 
-        name1 = input("Enter the name of the first hero here: ")
+        name1 = input("Enter the name of the first hero here:\n")
         name1 = name1.capitalize()
 
         if validate_names(name1):
@@ -37,7 +37,7 @@ def get_user_name2():
     Get name input from user.
     """
     while True:
-        name2 = input("Enter the name of the second hero here: ")
+        name2 = input("Enter the name of the second hero here:\n")
         name2 = name2.capitalize()
 
         if validate_names(name2):
@@ -79,7 +79,7 @@ def get_start_story(name1, name2):
        
     print(story_text)
     while True: 
-        choice1 = input("Insert X or Y here: ")
+        choice1 = input("Insert X or Y here:\n")
         choice1 = choice1.capitalize()
         
         if validate_story_choice(choice1):
@@ -107,7 +107,7 @@ def get_adventure_story(name1, name2, choice1):
     print(story_text)
     
     while True:        
-        choice2 = input("Insert X or Y here: ")
+        choice2 = input("Insert X or Y here:\n")
         choice2 = choice2.capitalize()
 
     
