@@ -186,6 +186,35 @@ def get_ending(name1, name2):
     story_text = wrap_text(story_text)
        
     print(story_text)
+
+    while True: 
+        choice3 = input("Insert X or Y here:\n")
+        choice3 = choice3.capitalize()
+        
+        if validate_story_choice(choice3):
+            print("Let's go! \n")
+            break
+
+    return choice3
+
+def get_final_page(name1, name2, choice3):
+    """
+    The final part of story 
+    """
+    sleep(2)
+    os.system('clear')
+
+    if choice3 == "X":
+        story = SHEET.worksheet("endx").get_all_values()                
+    elif choice3 == "Y":
+        story = SHEET.worksheet("endy").get_all_values()
+     
+    story_text = "\n".join([row[0] for row in story])
+    story_text = story_text.replace("[Name1]", name1)
+    story_text = story_text.replace("[Name2]", name2)
+    story_text = story_text.replace("'\\n'", "\n")
+    story_text = wrap_text(story_text)
+    print(story_text)
     
 def validate_story_choice(choice):
     """
@@ -212,7 +241,9 @@ def main():
     choice1 = get_start_story(name1, name2)
     choice2 = get_adventure_story(name1, name2, choice1)
     get_end_story(name1, name2, choice2)
-    get_ending(name1, name2)
+    #get_ending(name1, name2)
+    choice3 = get_ending(name1, name2)
+    get_final_page(name1, name2, choice3)
 
 print("Welcome to Bedtime Adventures! \n")
 
