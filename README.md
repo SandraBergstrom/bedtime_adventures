@@ -62,6 +62,7 @@ This adventure game program prompts users to enter two names and presents them w
 ![name_prompt](/assets/images/3letters.png)
 ![only_letters](/assets/images/onlyletters.png)
 
+The program includes a feature that automatically capitalizes the names entered by the user in the adventure story, even if they are inputted in lowercase letters. This provides a more polished and professional appearance to the output text. <br><br>
 At the end of the first part of the story, users are presented with two choices, X or Y. <br>
 ![choices](/assets/images/xy.png)
 
@@ -71,7 +72,7 @@ Throughout the story, the names that the user entered at the beginning are used.
 After the user has made a choice, a confirmation message to reassure that the child made a good choice, is displayed as shown below: <br>
 ![alt text](/assets/images/choice-confirmation.png)
 
-The second part of the story corresponds to the user's choice. 
+The second part of the story corresponds to the user's choice. <br>
 The third part is the ending of the story, which is also determined by the user's choices in the previous parts.
 
 ### Future ideas
@@ -105,7 +106,7 @@ The third part is the ending of the story, which is also determined by the user'
 
 ## Bugs:
 ### Known bugs:
-- The textwrap is causing an unintenional line breakssince I added the possibility for line breaks with the parameter replace_whitespace=False. Thouhgt of creating line breaks in the source text instead but since we don´t know the lenght of the names that we get from input we can't control that the line breaks will end up where best suited this way. Not having line breaks at all is not an option since then we go back to long lines and breaking words instead of doing line breaks after/before words.
+- The textwrap is causing an unintenional line breaks since I added the possibility for line breaks with the parameter replace_whitespace=False. Thouhgt of creating line breaks in the source text instead but since we don´t know the lenght of the names that we get from input we can't control that the line breaks will end up where best suited this way. Not having line breaks at all is not an option since then we go back to long lines and breaking words instead of doing line breaks after/before words.
 
 ### Fixed bugs:
 - Name validation for only letters will cause an error everytime because of the csv.
